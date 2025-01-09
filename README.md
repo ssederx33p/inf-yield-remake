@@ -17,7 +17,7 @@ if not game:IsLoaded() then
     notLoaded:Destroy()
 end
 
-currentVersion = "6.1"
+currentVersion = "6.2"
 
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
@@ -1931,6 +1931,13 @@ MaterialService = cloneref(game:GetService("MaterialService"))
 AvatarEditorService = cloneref(game:GetService("AvatarEditorService"))
 TextChatService = cloneref(game:GetService("TextChatService"))
 
+-- validateType
+function vtype(o, t)
+    if o == nil then return false end
+    if type(o) == "userdata" then return typeof(o) == t end
+    return type(o) == t
+end
+
 sethidden = sethiddenproperty or set_hidden_property or set_hidden_prop
 gethidden = gethiddenproperty or get_hidden_property or get_hidden_prop
 queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
@@ -2837,6 +2844,7 @@ useFactorySettings = function()
     espTransparency = 0.3
     logsEnabled = false
     jLogsEnabled = false
+    logsWebhook = nil
     aliases = {}
     binds = {}
     WayPoints = {}
@@ -2932,24 +2940,25 @@ function saves()
             if out ~= nil and tostring(out):gsub("%s", "") ~= "" then
                 local success, response = pcall(function()
                     local json = HttpService:JSONDecode(out)
-                    if json.prefix ~= nil then prefix = json.prefix else prefix = ';' end
-                    if json.StayOpen ~= nil then StayOpen = json.StayOpen else StayOpen = false end
-                    if json.keepIY ~= nil then KeepInfYield = json.keepIY else KeepInfYield = true end
-                    if json.espTransparency ~= nil then espTransparency = json.espTransparency else espTransparency = 0.3 end
-                    if json.logsEnabled ~= nil then logsEnabled = json.logsEnabled else logsEnabled = false end
-                    if json.jLogsEnabled ~= nil then jLogsEnabled = json.jLogsEnabled else jLogsEnabled = false end
-                    if json.aliases ~= nil then aliases = json.aliases else aliases = {} end
-                    if json.binds ~= nil then binds = (json.binds or {}) else binds = {} end
-                    if json.spawnCmds ~= nil then spawnCmds = json.spawnCmds end
-                    if json.WayPoints ~= nil then AllWaypoints = json.WayPoints else WayPoints = {} AllWaypoints = {} end
-                    if json.PluginsTable ~= nil then PluginsTable = json.PluginsTable else PluginsTable = {} end
-                    if json.currentShade1 ~= nil then currentShade1 = Color3.new(json.currentShade1[1],json.currentShade1[2],json.currentShade1[3]) end
-                    if json.currentShade2 ~= nil then currentShade2 = Color3.new(json.currentShade2[1],json.currentShade2[2],json.currentShade2[3]) end
-                    if json.currentShade3 ~= nil then currentShade3 = Color3.new(json.currentShade3[1],json.currentShade3[2],json.currentShade3[3]) end
-                    if json.currentText1 ~= nil then currentText1 = Color3.new(json.currentText1[1],json.currentText1[2],json.currentText1[3]) end
-                    if json.currentText2 ~= nil then currentText2 = Color3.new(json.currentText2[1],json.currentText2[2],json.currentText2[3]) end
-                    if json.currentScroll ~= nil then currentScroll = Color3.new(json.currentScroll[1],json.currentScroll[2],json.currentScroll[3]) end
-                    if json.eventBinds ~= nil then loadedEventData = json.eventBinds end
+                    if vtype(json.prefix, "string") then prefix = json.prefix else prefix = ';' end
+                    if vtype(json.StayOpen, "boolean") then StayOpen = json.StayOpen else StayOpen = false end
+                    if vtype(json.keepIY, "boolean") then KeepInfYield = json.keepIY else KeepInfYield = true end
+                    if vtype(json.espTransparency, "number") then espTransparency = json.espTransparency else espTransparency = 0.3 end
+                    if vtype(json.logsEnabled, "boolean") then logsEnabled = json.logsEnabled else logsEnabled = false end
+                    if vtype(json.jLogsEnabled, "boolean") then jLogsEnabled = json.jLogsEnabled else jLogsEnabled = false end
+                    if vtype(json.logsWebhook, "string") then logsWebhook = json.logsWebhook else logsWebhook = nil end
+                    if vtype(json.aliases, "table") then aliases = json.aliases else aliases = {} end
+                    if vtype(json.binds, "table") then binds = json.binds else binds = {} end
+                    if vtype(json.spawnCmds, "table") then spawnCmds = json.spawnCmds end
+                    if vtype(json.WayPoints, "table") then AllWaypoints = json.WayPoints else WayPoints = {} AllWaypoints = {} end
+                    if vtype(json.PluginsTable, "table") then PluginsTable = json.PluginsTable else PluginsTable = {} end
+                    if vtype(json.currentShade1, "table") then currentShade1 = Color3.new(json.currentShade1[1],json.currentShade1[2],json.currentShade1[3]) end
+                    if vtype(json.currentShade2, "table") then currentShade2 = Color3.new(json.currentShade2[1],json.currentShade2[2],json.currentShade2[3]) end
+                    if vtype(json.currentShade3, "table") then currentShade3 = Color3.new(json.currentShade3[1],json.currentShade3[2],json.currentShade3[3]) end
+                    if vtype(json.currentText1, "table") then currentText1 = Color3.new(json.currentText1[1],json.currentText1[2],json.currentText1[3]) end
+                    if vtype(json.currentText2, "table") then currentText2 = Color3.new(json.currentText2[1],json.currentText2[2],json.currentText2[3]) end
+                    if vtype(json.currentScroll, "table") then currentScroll = Color3.new(json.currentScroll[1],json.currentScroll[2],json.currentScroll[3]) end
+                    if vtype(json.eventBinds, "string") then loadedEventData = json.eventBinds end
                 end)
                 if not success then
                     jsonAttempts = jsonAttempts + 1
@@ -3006,6 +3015,7 @@ function updatesaves()
 			espTransparency = espTransparency;
 			logsEnabled = logsEnabled;
 			jLogsEnabled = jLogsEnabled;
+			logsWebhook = logsWebhook;
 			aliases = aliases;
 			binds = binds or {};
 			WayPoints = AllWaypoints;
@@ -3826,12 +3836,31 @@ if not writefileExploit() then
     notify("Saves", "Your exploit does not support read/write file. Your settings will not save.")
 end
 
-ChatLog = function(plr)
-	plr.Chatted:Connect(function(Message)
-		if logsEnabled == true then
-			CreateLabel(plr.Name,Message)
-		end
-	end)
+function sendChatWebhook(player, message)
+    if httprequest and vtype(logsWebhook, "string") then
+        local log = HttpService:JSONEncode({
+            content = message,
+            avatar_url = "https://files.catbox.moe/i968v2.jpg",
+            username = formatUsername(player),
+            allowed_mentions = {parse = {}}
+        })
+
+        httprequest({
+            Url = logsWebhook,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = log
+        })
+    end
+end
+
+ChatLog = function(player)
+    player.Chatted:Connect(function(message)
+        if logsEnabled == true then
+            CreateLabel(player.Name, message)
+            sendChatWebhook(player, message)
+        end
+    end)
 end
 
 JoinLog = function(plr)
@@ -4406,6 +4435,7 @@ CMDs[#CMDs + 1] = {NAME = '', DESC = ''}
 CMDs[#CMDs + 1] = {NAME = 'logs', DESC = 'Opens the logs GUI'}
 CMDs[#CMDs + 1] = {NAME = 'chatlogs / clogs', DESC = 'Log what people say or whisper'}
 CMDs[#CMDs + 1] = {NAME = 'joinlogs / jlogs', DESC = 'Log when people join'}
+CMDs[#CMDs + 1] = {NAME = 'chatlogswebhook / logswebhook [url]', DESC = 'Set a discord webhook for chatlogs to go to (provide no url to disable this)'}
 CMDs[#CMDs + 1] = {NAME = 'antichatlogs / antichatlogger', DESC = 'Prevents Roblox from banning you for your silly chat messages (game needs the legacy chat)'}
 CMDs[#CMDs + 1] = {NAME = 'chat / say [text]', DESC = 'Makes you chat a string (possible mute bypass)'}
 CMDs[#CMDs + 1] = {NAME = 'spam [text]', DESC = 'Makes you spam the chat'}
@@ -4547,7 +4577,7 @@ CMDs[#CMDs + 1] = {NAME = 'teleport / tp [player] [player] (TOOL)', DESC = 'Tele
 CMDs[#CMDs + 1] = {NAME = 'fastteleport / fasttp [player] [player] (TOOL)', DESC = 'Teleports a player to another player (less reliable) (YOU NEED A TOOL)'}
 CMDs[#CMDs + 1] = {NAME = 'fling', DESC = 'Flings anyone you touch'}
 CMDs[#CMDs + 1] = {NAME = 'unfling', DESC = 'Disables the fling command'}
-CMDs[#CMDs + 1] = {NAME = 'flyfling', DESC = 'Basically the invisfling command but not invisible'}
+CMDs[#CMDs + 1] = {NAME = 'flyfling [speed]', DESC = 'Basically the invisfling command but not invisible'}
 CMDs[#CMDs + 1] = {NAME = 'unflyfling', DESC = 'Disables the flyfling command'}
 CMDs[#CMDs + 1] = {NAME = 'walkfling', DESC = 'Basically fling but no spinning'}
 CMDs[#CMDs + 1] = {NAME = 'unwalkfling / nowalkfling', DESC = 'Disables walkfling'}
@@ -4558,7 +4588,7 @@ CMDs[#CMDs + 1] = {NAME = 'loopoof', DESC = 'Loops everyones character sounds (e
 CMDs[#CMDs + 1] = {NAME = 'unloopoof', DESC = 'Stops the oof chaos'}
 CMDs[#CMDs + 1] = {NAME = 'muteboombox [player]', DESC = 'Mutes someones boombox'}
 CMDs[#CMDs + 1] = {NAME = 'unmuteboombox [player]', DESC = 'Unmutes someones boombox'}
-CMDs[#CMDs + 1] = {NAME = 'hitbox [player] [size]', DESC = 'Expands the hitbox for players HumanoidRootPart (default is 1)'}
+CMDs[#CMDs + 1] = {NAME = 'hitbox [player] [size] [transparency]', DESC = 'Expands the hitbox for players HumanoidRootPart (default is 1)'}
 CMDs[#CMDs + 1] = {NAME = 'headsize [player] [size]', DESC = 'Expands the head size for players Head (default is 1)'}
 CMDs[#CMDs + 1] = {NAME = '', DESC = ''}
 CMDs[#CMDs + 1] = {NAME = 'reset', DESC = 'Resets your character normally'}
@@ -4660,6 +4690,7 @@ CMDs[#CMDs + 1] = {NAME = 'unhovername / nohovername', DESC = 'Turns off hoverna
 CMDs[#CMDs + 1] = {NAME = 'mousesensitivity / ms [0-10]', DESC = 'Sets your mouse sensitivity (affects first person and right click drag) (default is 1)'}
 CMDs[#CMDs + 1] = {NAME = 'clickdelete', DESC = 'Go to settings>Keybinds>Add for clicktp'}
 CMDs[#CMDs + 1] = {NAME = 'clickteleport', DESC = 'Go to settings>Keybinds>Add for click tp'}
+CMDs[#CMDs + 1] = {NAME = 'mouseteleport / mousetp', DESC = 'Teleports your character to your mouse. This is recommended as a keybind'}
 CMDs[#CMDs + 1] = {NAME = '', DESC = ''}
 CMDs[#CMDs + 1] = {NAME = 'tools', DESC = 'Copies tools from ReplicatedStorage and Lighting'}
 CMDs[#CMDs + 1] = {NAME = 'notools / removetools / deletetools', DESC = 'Removes tools from character and backpack'}
@@ -4689,6 +4720,7 @@ CMDs[#CMDs + 1] = {NAME = '', DESC = ''}
 CMDs[#CMDs + 1] = {NAME = 'addplugin / plugin [name]', DESC = 'Add a plugin via command'}
 CMDs[#CMDs + 1] = {NAME = 'removeplugin / deleteplugin [name]', DESC = 'Remove a plugin via command'}
 CMDs[#CMDs + 1] = {NAME = 'reloadplugin [name]', DESC = 'Reloads a plugin'}
+CMDs[#CMDs + 1] = {NAME = 'addallplugins / loadallplugins', DESC = 'Adds all available plugins from the workspace folder'}
 CMDs[#CMDs + 1] = {NAME = '', DESC = ''}
 CMDs[#CMDs + 1] = {NAME = 'breakloops / break (cmd loops)', DESC = 'Stops any cmd loops (;100^1^cmd)'}
 CMDs[#CMDs + 1] = {NAME = 'removecmd / deletecmd', DESC = 'Removes a command until the admin is reloaded'}
@@ -6835,6 +6867,8 @@ addcmd('noclip',{},function(args, speaker)
 		end
 	end
 	Noclipping = RunService.Stepped:Connect(NoclipLoop)
+	if args[1] and args[1] == 'nonotify' then return end
+	notify('Noclip','Noclip Enabled')
 end)
 
 addcmd('clip',{'unnoclip'},function(args, speaker)
@@ -6842,6 +6876,8 @@ addcmd('clip',{'unnoclip'},function(args, speaker)
 		Noclipping:Disconnect()
 	end
 	Clip = true
+	if args[1] and args[1] == 'nonotify' then return end
+	notify('Noclip','Noclip Disabled')
 end)
 
 addcmd('togglenoclip',{},function(args, speaker)
@@ -7164,7 +7200,7 @@ addcmd('float', {'platform'},function(args, speaker)
 			end)
 			eUp = IYMouse.KeyUp:Connect(function(KEY)
 				if KEY == 'e' then
-					FloatValue = FloatValue - 0.5
+					FloatValue = FloatValue - 1.5
 				end
 			end)
 			qDown = IYMouse.KeyDown:Connect(function(KEY)
@@ -7174,7 +7210,7 @@ addcmd('float', {'platform'},function(args, speaker)
 			end)
 			eDown = IYMouse.KeyDown:Connect(function(KEY)
 				if KEY == 'e' then
-					FloatValue = FloatValue + 0.5
+					FloatValue = FloatValue + 1.5
 				end
 			end)
 			floatDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(function()
@@ -8511,24 +8547,129 @@ addcmd('uninvisibleparts',{'uninvisparts'},function(args, speaker)
 	shownParts = {}
 end)
 
-addcmd('ghosthub',{},function(args, speaker)
- loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))()
-  end
+addcmd('btools',{},function(args, speaker)
+	for i = 1, 4 do
+		local Tool = Instance.new("HopperBin")
+		Tool.BinType = i
+		Tool.Name = randomString()
+		Tool.Parent = speaker:FindFirstChildOfClass("Backpack")
+	end
 end)
 
-addcmd('aquamatrix',{},function(args, speaker)
- loadstring(game:HttpGet("https://raw.githubusercontent.com/ocfi/aquamatrix-source-open/refs/heads/main/source%20open"))();
-  end
+addcmd('f3x',{'fex'},function(args, speaker)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/refs/heads/main/f3x.lua"))()
 end)
 
-addcmd('jerkoff',{'jerk'},function(args, speaker)
-loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))() 
-loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
-  end
+addcmd('f3x',{'fex'},function(args, speaker)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/refs/heads/main/f3x.lua"))()
 end)
 
-addcmd('flingall',{},function(args, speaker)
-	loadstring(game:HttpGet('https://pastebin.com/raw/rvYNTuF8'))()
+addcmd('universalorca',{'orcahub'},function(args, speaker)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/richie0866/orca/master/public/latest.lua"))()
+end)
+
+addcmd('aquamatrixhub',{'aquamatrix'},function(args, speaker)
+    local a = {
+    ["Notification"] = Instance.new("ScreenGui"),
+    ["Frame"] = Instance.new("Frame"),
+    ["UICorner"] = Instance.new("UICorner"),
+    ["UIStroke"] = Instance.new("UIStroke"),
+    ["TextLabel"] = Instance.new("TextLabel"),
+    ["Frame 2"] = Instance.new("Frame"),
+    ["UIListLayout"] = Instance.new("UIListLayout"),
+    ["TextButton"] = Instance.new("TextButton"),
+    ["UICorner 2"] = Instance.new("UICorner"),
+    ["UIStroke 2"] = Instance.new("UIStroke")
+}
+
+a["Notification"]["Name"] = "Notification"
+a["Notification"]["Parent"] = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+a["Frame"]["Position"] = UDim2.new(0.5, 0, 0.5, 0)
+a["Frame"]["Size"] = UDim2.new(0, 0, 0, 0) -- Start with size 0
+a["Frame"]["AnchorPoint"] = Vector2.new(0.5, 0.5)
+a["Frame"]["BackgroundColor3"] = Color3.fromRGB(10, 140, 175)
+a["Frame"]["BorderSizePixel"] = 0
+a["Frame"]["Name"] = "Frame"
+a["Frame"]["Parent"] = a["Notification"]
+
+a["UICorner"]["Name"] = "UICorner"
+a["UICorner"]["Parent"] = a["Frame"]
+
+a["UIStroke"]["Color"] = Color3.fromRGB(0, 220, 255)
+a["UIStroke"]["Thickness"] = 4
+a["UIStroke"]["Name"] = "UIStroke"
+a["UIStroke"]["Parent"] = a["Frame"]
+
+a["TextLabel"]["Position"] = UDim2.new(0, 10, 0, 7)
+a["TextLabel"]["Size"] = UDim2.new(1, -20, 0, 80)
+a["TextLabel"]["BackgroundTransparency"] = 1
+a["TextLabel"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+a["TextLabel"]["Text"] = "Aqua Hub Is A Skid Join my discord instead. Link Copied!"
+a["TextLabel"]["TextColor3"] = Color3.fromRGB(255, 255, 255)
+a["TextLabel"]["TextSize"] = 20
+a["TextLabel"]["TextWrapped"] = true
+a["TextLabel"]["Name"] = "TextLabel"
+a["TextLabel"]["Parent"] = a["Frame"]
+
+a["Frame 2"]["Position"] = UDim2.new(0, 10, 1, -50)
+a["Frame 2"]["Size"] = UDim2.new(1, -20, 0, 40)
+a["Frame 2"]["BackgroundTransparency"] = 1
+a["Frame 2"]["Name"] = "Frame"
+a["Frame 2"]["Parent"] = a["Frame"]
+
+a["UIListLayout"]["Padding"] = UDim.new(0, 10)
+a["UIListLayout"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Center
+a["UIListLayout"]["FillDirection"] = Enum.FillDirection.Horizontal
+a["UIListLayout"]["VerticalAlignment"] = Enum.VerticalAlignment.Center
+a["UIListLayout"]["Name"] = "UIListLayout"
+a["UIListLayout"]["Parent"] = a["Frame 2"]
+
+a["TextButton"]["Size"] = UDim2.new(0.4, 0, 0, 30)
+a["TextButton"]["BackgroundColor3"] = Color3.fromRGB(0, 220, 255)
+a["TextButton"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+a["TextButton"]["Text"] = "Okay,"
+a["TextButton"]["TextColor3"] = Color3.fromRGB(255, 255, 255)
+a["TextButton"]["TextSize"] = 16
+a["TextButton"]["TextWrapped"] = true
+a["TextButton"]["Name"] = "TextButton"
+a["TextButton"]["Parent"] = a["Frame 2"]
+
+a["UICorner 2"]["CornerRadius"] = UDim.new(0, 6)
+a["UICorner 2"]["Name"] = "UICorner"
+a["UICorner 2"]["Parent"] = a["TextButton"]
+
+a["UIStroke 2"]["Color"] = Color3.fromRGB(255, 255, 255)
+a["UIStroke 2"]["Name"] = "UIStroke"
+a["UIStroke 2"]["Parent"] = a["TextButton"]
+
+
+local TweenService = game:GetService("TweenService")
+local appearTween = TweenService:Create(
+    a["Frame"],
+    TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+    { Size = UDim2.new(0, 300, 0, 120) }
+)
+
+local disappearTween = TweenService:Create(
+    a["Frame"],
+    TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
+    { Size = UDim2.new(0, 0, 0, 0) }
+)
+
+
+appearTween:Play()
+
+
+a["TextButton"].MouseButton1Click:Connect(function()
+    disappearTween:Play()
+    disappearTween.Completed:Connect(function()
+
+    setclipboard("aquamatrix")
+    a["Notification"]:Destroy()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ocfi/aquamatrix-source-open/refs/heads/main/source%20open"))();
+    end)
+end)
 end)
 
 addcmd('partpath',{'partname'},function(args, speaker)
@@ -9901,6 +10042,14 @@ addcmd('clickteleport',{},function(args, speaker)
 	if speaker == Players.LocalPlayer then
 		notify('Click TP','Go to Settings>Keybinds>Add to set up click tp')
 	end
+end)
+
+addcmd("mouseteleport", {"mousetp"}, function(args, speaker)
+    local root = getRoot(speaker.Character)
+    local pos = IYMouse.Hit
+    if root and pos then
+        root.CFrame = pos + Vector3.new(3, 1, 0)
+    end
 end)
 
 addcmd('tptool', {'teleporttool'}, function(args, speaker)
@@ -11410,6 +11559,15 @@ addcmd('joinlogs',{'jlogs'},function(args, speaker)
 	logs:TweenPosition(UDim2.new(0, 0, 1, -265), "InOut", "Quart", 0.3, true, nil)
 end)
 
+addcmd("chatlogswebhook", {"logswebhook"}, function(args, speaker)
+    if httprequest then
+        logsWebhook = args[1] or nil
+        updatesaves()
+    else
+        notify("Incompatible Exploit", "Your exploit does not support this command (missing request)")
+    end
+end)
+
 addcmd("antichatlogs", {"antichatlogger"}, function(args, speaker)
     if not isLegacyChat then
         return notify("antichatlogs", "Game needs the legacy chat")
@@ -11497,13 +11655,16 @@ addcmd('togglefling',{},function(args, speaker)
 end)
 
 addcmd("flyfling", {}, function(args, speaker)
-    execCmd("unvehiclefly\\unfling\\unnoclip")
+    execCmd("unvehiclefly\\unwalkfling")
     wait()
-    execCmd("vehiclefly\\fling\\noclip")
+    if args[1] and isNumber(args[1]) then
+        vehicleflyspeed = args[1]
+    end
+    execCmd("vehiclefly\\walkfling")
 end)
 
 addcmd("unflyfling", {}, function(args, speaker)
-    execCmd("unvehiclefly\\unfling\\unnoclip\\breakvelocity")
+    execCmd("unvehiclefly\\unwalkfling\\breakvelocity")
 end)
 
 addcmd("toggleflyfling", {}, function(args, speaker)
@@ -11520,7 +11681,7 @@ addcmd("walkfling", {}, function(args, speaker)
         end)
     end
 
-    execCmd("noclip")
+    execCmd("noclip nonotify")
     walkflinging = true
     repeat RunService.Heartbeat:Wait()
         local character = speaker.Character
@@ -11534,7 +11695,7 @@ addcmd("walkfling", {}, function(args, speaker)
         end
 
         vel = root.Velocity
-        root.Velocity = vel * 1000000 + Vector3.new(0, 1000000, 0)
+        root.Velocity = vel * 10000 + Vector3.new(0, 10000, 0)
 
         RunService.RenderStepped:Wait()
         if character and character.Parent and root and root.Parent then
@@ -11551,7 +11712,7 @@ end)
 
 addcmd("unwalkfling", {"nowalkfling"}, function(args, speaker)
     walkflinging = false
-    execCmd("unnoclip")
+    execCmd("unnoclip nonotify")
 end)
 
 addcmd("togglewalkfling", {}, function(args, speaker)
@@ -12062,6 +12223,7 @@ end)
 
 addcmd('hitbox',{},function(args, speaker)
 	local players = getPlayer(args[1], speaker)
+	local transparency = args[3] and tonumber(args[3]) or 0.4
 	for i,v in pairs(players) do
 		if Players[v] ~= speaker and Players[v].Character:FindFirstChild('HumanoidRootPart') then
 			local sizeArg = tonumber(args[2])
@@ -12070,10 +12232,10 @@ addcmd('hitbox',{},function(args, speaker)
 			if Root:IsA("BasePart") then
 				if not args[2] or sizeArg == 1 then
 					Root.Size = Vector3.new(2,1,1)
-					Root.Transparency = 0.4
+					Root.Transparency = transparency
 				else
 					Root.Size = Size
-					Root.Transparency = 0.4
+					Root.Transparency = transparency
 				end
 			end
 		end
@@ -12499,6 +12661,25 @@ addcmd('reloadplugin',{},function(args, speaker)
 	addPlugin(pluginName)
 end)
 
+addcmd("addallplugins", {"loadallplugins"}, function(args, speaker)
+    if not listfiles or not isfolder then
+        notify("Incompatible Exploit", "Your exploit does not support this command (missing listfiles/isfolder)")
+        return
+    end
+
+    for _, filePath in ipairs(listfiles("")) do
+        local fileName = filePath:match("([^/\\]+%.iy)$")
+
+        if fileName and
+            fileName:lower() ~= "iy_fe.iy" and
+            not isfolder(fileName) and
+            not table.find(PluginsTable, fileName)
+        then
+            addPlugin(fileName)
+        end
+    end
+end)
+
 addcmd('removecmd',{'deletecmd'},function(args, speaker)
 	removecmd(args[1])
 end)
@@ -12624,6 +12805,7 @@ if not isLegacyChat then
                 do_exec(message.Text, Players.LocalPlayer)
             end
             eventEditor.FireEvent("OnChatted", player.Name, message.Text)
+            sendChatWebhook(player, message.Text)
         end
     end)
 end
