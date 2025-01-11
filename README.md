@@ -207,7 +207,7 @@ Title.BorderSizePixel = 0
 Title.Size = UDim2.new(0, 250, 0, 20)
 Title.Font = Enum.Font.SourceSans
 Title.TextSize = 18
-Title.Text = "Infinite Yield FE v" .. currentVersion
+Title.Text = "InfYield (Ederx33p edition) v" .. currentVersion
 
 do
 	local emoji = ({
@@ -1455,7 +1455,7 @@ PluginsHint.Position = UDim2.new(0, 25, 0, 40)
 PluginsHint.Size = UDim2.new(0, 200, 0, 50)
 PluginsHint.Font = Enum.Font.SourceSansItalic
 PluginsHint.TextSize = 16
-PluginsHint.Text = "Download plugins from the IY Discord (discord.gg/78ZuWSq)"
+PluginsHint.Text = "Download plugins from the IY Discord (https://discord.gg/f6DGH2bR)"
 PluginsHint.TextColor3 = Color3.new(1, 1, 1)
 PluginsHint.TextStrokeColor3 = Color3.new(1, 1, 1)
 PluginsHint.TextWrapped = true
@@ -2771,7 +2771,7 @@ reference = (function()
 		{113,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=4,Name="Header",Parent={112},Position=UDim2.new(0,8,0,5),Size=UDim2.new(1,-8,0,20),Text="Get Further Help",TextColor3=Color3.new(1,1,1),TextSize=20,TextXAlignment=0,ZIndex=10,}},
 		{114,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Text",Parent={112},Position=UDim2.new(0,8,0,30),Size=UDim2.new(1,-8,0,32),Text="You can join the Discord server to get support with IY,  and read up on more documentation such as the Plugin API.",TextColor3=Color3.new(1,1,1),TextSize=14,TextWrapped=true,TextXAlignment=0,ZIndex=10,}},
 		{115,"Frame",{BackgroundColor3=Color3.new(0.1803921610117,0.1803921610117,0.1843137294054),BorderSizePixel=0,Name="Line",Parent={112},Position=UDim2.new(0,10,1,-1),Size=UDim2.new(1,-20,0,1),Visible=false,ZIndex=10,}},
-		{116,"TextButton",{BackgroundColor3=Color3.new(0.48627451062202,0.61960786581039,0.85098040103912),BorderColor3=Color3.new(0.1803921610117,0.1803921610117,0.1843137294054),Font=4,Name="InviteButton",Parent={112},Position=UDim2.new(0,5,0,75),Size=UDim2.new(1,-10,0,25),Text="Copy Discord Invite Link (https://discord.gg/78ZuWSq)",TextColor3=Color3.new(0.1803921610117,0.1803921610117,0.1843137294054),TextSize=16,ZIndex=10,}},
+		{116,"TextButton",{BackgroundColor3=Color3.new(0.48627451062202,0.61960786581039,0.85098040103912),BorderColor3=Color3.new(0.1803921610117,0.1803921610117,0.1843137294054),Font=4,Name="InviteButton",Parent={112},Position=UDim2.new(0,5,0,75),Size=UDim2.new(1,-10,0,25),Text="Copy Discord Invite Link (https://discord.gg/f6DGH2bR)",TextColor3=Color3.new(0.1803921610117,0.1803921610117,0.1843137294054),TextSize=16,ZIndex=10,}},
 	})
 	for i,v in pairs(main.Content.List:GetDescendants()) do
 		if v:IsA("TextLabel") then
@@ -2789,7 +2789,7 @@ reference = (function()
 	local lastPress = nil
 	inviteButton.MouseButton1Click:Connect(function()
 		if everyClipboard then
-			toClipboard("https://discord.gg/78ZuWSq")
+			toClipboard("https://discord.gg/f6DGH2bR")
 			inviteButton.Text = "Copied"
 		else
 			inviteButton.Text = "No Clipboard Function, type out the link"
@@ -2798,7 +2798,7 @@ reference = (function()
 		lastPress = pressTime
 		wait(2)
 		if lastPress ~= pressTime then return end
-		inviteButton.Text = "Copy Discord Invite Link (https://discord.gg/78ZuWSq)"
+		inviteButton.Text = "Copy Discord Invite Link (https://discord.gg/f6DGH2bR)"
 	end)
 	dragGUI(main)
 	main.Parent = PARENT
@@ -4322,7 +4322,7 @@ function autoComplete(str,curText)
 end
 
 CMDs = {}
-CMDs[#CMDs + 1] = {NAME = 'bloxfruits', DESC = 'Invite to the Infinite Yield support server.'}
+CMDs[#CMDs + 1] = {NAME = 'discord / support / help', DESC = 'Invite to the Infinite Yield support server.'}
 CMDs[#CMDs + 1] = {NAME = 'console', DESC = 'Loads Roblox console'}
 CMDs[#CMDs + 1] = {NAME = 'oldconsole', DESC = 'Loads old Roblox console'}
 CMDs[#CMDs + 1] = {NAME = 'explorer / dex', DESC = 'Opens DEX by Moon'}
@@ -4332,6 +4332,7 @@ CMDs[#CMDs + 1] = {NAME = 'audiologger / alogger', DESC = 'Opens Edges audio log
 CMDs[#CMDs + 1] = {NAME = 'serverinfo / info', DESC = 'Gives you info about the server'}
 CMDs[#CMDs + 1] = {NAME = 'jobid', DESC = 'Copies the games JobId to your clipboard'}
 CMDs[#CMDs + 1] = {NAME = 'ghosthub', DESC = 'ghosthub'}
+CMDs[#CMDs + 1] = {NAME = 'bloxfruits', DESC = 'blox fruits scripthub'}
 CMDs[#CMDs + 1] = {NAME = 'notifyjobid', DESC = 'Notifies you the games JobId'}
 CMDs[#CMDs + 1] = {NAME = 'rejoin / rj', DESC = 'Makes you rejoin the game'}
 CMDs[#CMDs + 1] = {NAME = 'autorejoin / autorj', DESC = 'Automatically rejoins the server if you get kicked/disconnected'}
@@ -4490,7 +4491,7 @@ CMDs[#CMDs + 1] = {NAME = 'lookat [player]', DESC = 'Moves your camera view to a
 CMDs[#CMDs + 1] = {NAME = '', DESC = ''}
 CMDs[#CMDs + 1] = {NAME = 'jerkoff', DESC = 'Jerk Off (lol)'}
 CMDs[#CMDs + 1] = {NAME = 'aquamatrix', DESC = 'AquaMatrix Hub'}
-CMDs[#CMDs + 1] = {NAME = 'universalorca / orcahub', DESC = 'Orca Universal Hub'}
+CMDs[#CMDs + 1] = {NAME = 'openorcahub / orcahub', DESC = 'Orca Hub'}
 CMDs[#CMDs + 1] = {NAME = 'partname / partpath', DESC = 'Allows you to click a part to see its path & name'}
 CMDs[#CMDs + 1] = {NAME = 'delete [instance name] (CLIENT)', DESC = 'Removes any part with a certain name from the workspace (DOES NOT REPLICATE)'}
 CMDs[#CMDs + 1] = {NAME = 'deleteclass / dc [class name] (CLIENT)', DESC = 'Removes any part with a certain classname from the workspace (DOES NOT REPLICATE)'}
@@ -6358,300 +6359,29 @@ addcmd('clraliases',{},function(args, speaker)
 	refreshaliases()
 end)
 
-addcmd('bloxfruits', {'support', 'help'}, function(args, speaker)
--- Gui to Lua
--- Version: 1.0
-
-game.StarterGui:SetCore("SendNotification", {
-Title = "ScriptHub-BloxFruits";
-Text = "Hub By Juanko Mods VIP (edited by EderX)"; -- what the text says (ofc)
-Duration = 10;
-})
-
--- Instances:
-
-local ScreenGui = Instance.new("ScreenGui")
-local Main = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
-local TextButton = Instance.new("TextButton")
-local TextButton_2 = Instance.new("TextButton")
-local TextButton_3 = Instance.new("TextButton")
-local TextButton_4 = Instance.new("TextButton")
-local TextButton_5 = Instance.new("TextButton")
-local TextButton_6 = Instance.new("TextButton")
-local TextButton_7 = Instance.new("TextButton")
-local TextButton_8 = Instance.new("TextButton")
-local TextButton_9 = Instance.new("TextButton")
-local TextButton_10 = Instance.new("TextButton")
-local TextButton_11 = Instance.new("TextButton")
-local TextButton_12 = Instance.new("TextButton")
-local TextButton_13 = Instance.new("TextButton")
-local TextButton_14 = Instance.new("TextButton")
-local TextButton_15 = Instance.new("TextButton")
-local TextButton_16 = Instance.new("TextButton")
-local TextLabel_2 = Instance.new("TextLabel")
-
---Properties:
-
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-Main.Name = "Main"
-Main.Parent = ScreenGui
-Main.BackgroundColor3 = Color3.fromRGB(11, 11, 11)
-Main.BorderColor3 = Color3.fromRGB(255, 255, 255)
-Main.BorderSizePixel = 5
-Main.Position = UDim2.new(0.21171169, 0, 0.181818172, 0)
-Main.Size = UDim2.new(0, 383, 0, 237)
-Main.Active = true
-Main.Draggable = true
-
-TextLabel.Parent = Main
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BorderSizePixel = 4
-TextLabel.Position = UDim2.new(-0.0652741492, 0, 0, 0)
-TextLabel.Size = UDim2.new(0, 429, 0, 41)
-TextLabel.Font = Enum.Font.PatrickHand
-TextLabel.Text = "ScriptHub Blox Fruits"
-TextLabel.TextColor3 = Color3.fromRGB(225, 0, 3)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextWrapped = true
-
-TextButton.Parent = Main
-TextButton.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton.BorderSizePixel = 3
-TextButton.Position = UDim2.new(0.0208877288, 0, 0.23206751, 0)
-TextButton.Size = UDim2.new(0, 68, 0, 30)
-TextButton.Font = Enum.Font.PatrickHand
-TextButton.Text = "Webhook"
-TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.TextScaled = true
-TextButton.TextSize = 14.000
-TextButton.TextWrapped = true
-TextButton.MouseButton1Down:connect(function()
-loadstring(game:HttpGet('https://github.com/ssederx33p/panda-hub-not-mine/edit/main/README.md'))()
+addcmd('discord', {'support', 'help'}, function(args, speaker)
+	if everyClipboard then
+		toClipboard('https://discord.com/invite/dYHag43eeU')
+		notify('Discord Invite', 'Copied to clipboard!\ndiscord.gg/dYHag43eeU')
+	else
+		notify('Discord Invite', 'discord.gg/dYHag43eeU')
+	end
+	if httprequest then
+		httprequest({
+			Url = 'http://127.0.0.1:6463/rpc?v=1',
+			Method = 'POST',
+			Headers = {
+				['Content-Type'] = 'application/json',
+				Origin = 'https://discord.com'
+			},
+			Body = HttpService:JSONEncode({
+				cmd = 'INVITE_BROWSER',
+				nonce = HttpService:GenerateGUID(false),
+				args = {code = 'dYHag43eeU'}
+			})
+		})
+	end
 end)
-TextButton_2.Parent = Main
-TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_2.BorderSizePixel = 3
-TextButton_2.Position = UDim2.new(0.263707578, 0, 0.23206751, 0)
-TextButton_2.Size = UDim2.new(0, 68, 0, 30)
-TextButton_2.Font = Enum.Font.PatrickHand
-TextButton_2.Text = "Banana Hub"
-TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_2.TextScaled = true
-TextButton_2.TextSize = 14.000
-TextButton_2.TextWrapped = true
-TextButton_2.MouseButton1Down:connect(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Nghia11n/Banana-Hub/main/bananahub.lua"))()
-end)
-TextButton_3.Parent = Main
-TextButton_3.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_3.BorderSizePixel = 3
-TextButton_3.Position = UDim2.new(0.498694509, 0, 0.23206751, 0)
-TextButton_3.Size = UDim2.new(0, 68, 0, 30)
-TextButton_3.Font = Enum.Font.PatrickHand
-TextButton_3.Text = "Neva Hub"
-TextButton_3.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_3.TextScaled = true
-TextButton_3.TextSize = 14.000
-TextButton_3.TextWrapped = true
-TextButton_3.MouseButton1Down:connect(function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/VEZ2/NEVAHUB/main/2'))()
-end)
-TextButton_4.Parent = Main
-TextButton_4.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_4.BorderSizePixel = 3
-TextButton_4.Position = UDim2.new(0.736292422, 0, 0.23206751, 0)
-TextButton_4.Size = UDim2.new(0, 68, 0, 30)
-TextButton_4.Font = Enum.Font.PatrickHand
-TextButton_4.Text = "ThunderZ Hub"
-TextButton_4.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_4.TextScaled = true
-TextButton_4.TextSize = 14.000
-TextButton_4.TextWrapped = true
-TextButton_4.MouseButton1Down:connect(function()
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/ThunderZ-05/HUB/main/TestKey')))() 
-end)
-TextButton_5.Parent = Main
-TextButton_5.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_5.BorderSizePixel = 3
-TextButton_5.Position = UDim2.new(0.736292422, 0, 0.434599161, 0)
-TextButton_5.Size = UDim2.new(0, 68, 0, 30)
-TextButton_5.Font = Enum.Font.PatrickHand
-TextButton_5.Text = "Min Hub"
-TextButton_5.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_5.TextScaled = true
-TextButton_5.TextSize = 14.000
-TextButton_5.TextWrapped = true
-TextButton_5.MouseButton1Down:connect(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()
-end)
-TextButton_6.Parent = Main
-TextButton_6.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_6.BorderSizePixel = 3
-TextButton_6.Position = UDim2.new(0.498694509, 0, 0.434599161, 0)
-TextButton_6.Size = UDim2.new(0, 68, 0, 30)
-TextButton_6.Font = Enum.Font.PatrickHand
-TextButton_6.Text = "Raito Hub"
-TextButton_6.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_6.TextScaled = true
-TextButton_6.TextSize = 14.000
-TextButton_6.TextWrapped = true
-TextButton_6.MouseButton1Down:connect(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()
-end)
-TextButton_7.Parent = Main
-TextButton_7.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_7.BorderSizePixel = 3
-TextButton_7.Position = UDim2.new(0.263707578, 0, 0.434599161, 0)
-TextButton_7.Size = UDim2.new(0, 68, 0, 30)
-TextButton_7.Font = Enum.Font.PatrickHand
-TextButton_7.Text = "Cokka Hub"
-TextButton_7.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_7.TextScaled = true
-TextButton_7.TextSize = 14.000
-TextButton_7.TextWrapped = true
-TextButton_7.MouseButton1Down:connect(function()loadstring(game:HttpGet"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/CokkaHub.lua")()
-end)
-TextButton_8.Parent = Main
-TextButton_8.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_8.BorderSizePixel = 3
-TextButton_8.Position = UDim2.new(0.0208877325, 0, 0.434599161, 0)
-TextButton_8.Size = UDim2.new(0, 68, 0, 30)
-TextButton_8.Font = Enum.Font.PatrickHand
-TextButton_8.Text = "HoHo Hub"
-TextButton_8.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_8.TextScaled = true
-TextButton_8.TextSize = 14.000
-TextButton_8.TextWrapped = true
-TextButton_8.MouseButton1Down:connect(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()
-end)
-TextButton_9.Parent = Main
-TextButton_9.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_9.BorderSizePixel = 3
-TextButton_9.Position = UDim2.new(0.736292422, 0, 0.637130797, 0)
-TextButton_9.Size = UDim2.new(0, 68, 0, 30)
-TextButton_9.Font = Enum.Font.PatrickHand
-TextButton_9.Text = "Kncrypt Hub"
-TextButton_9.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_9.TextScaled = true
-TextButton_9.TextSize = 14.000
-TextButton_9.TextWrapped = true
-TextButton_9.MouseButton1Down:connect(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/Kncrypt/refs/heads/main/sources/BloxFruit.lua"))()
-end)
-TextButton_10.Parent = Main
-TextButton_10.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_10.BorderSizePixel = 3
-TextButton_10.Position = UDim2.new(0.498694509, 0, 0.637130797, 0)
-TextButton_10.Size = UDim2.new(0, 68, 0, 30)
-TextButton_10.Font = Enum.Font.PatrickHand
-TextButton_10.Text = "BlackTrap Hub"
-TextButton_10.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_10.TextScaled = true
-TextButton_10.TextSize = 14.000
-TextButton_10.TextWrapped = true
-TextButton_10.MouseButton1Down:connect(function()
-loadstring(game:HttpGet('https://lua-library.btteam.net/script-auth.txt'))()
-end)
-TextButton_11.Parent = Main
-TextButton_11.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_11.BorderSizePixel = 3
-TextButton_11.Position = UDim2.new(0.263707578, 0, 0.637130797, 0)
-TextButton_11.Size = UDim2.new(0, 68, 0, 30)
-TextButton_11.Font = Enum.Font.PatrickHand
-TextButton_11.Text = "Omg Hub"
-TextButton_11.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_11.TextScaled = true
-TextButton_11.TextSize = 14.000
-TextButton_11.TextWrapped = true
-TextButton_11.MouseButton1Down:connect(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
-end)
-TextButton_12.Parent = Main
-TextButton_12.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_12.BorderSizePixel = 3
-TextButton_12.Position = UDim2.new(0.0208877325, 0, 0.637130797, 0)
-TextButton_12.Size = UDim2.new(0, 68, 0, 30)
-TextButton_12.Font = Enum.Font.PatrickHand
-TextButton_12.Text = "Zen Hub"
-TextButton_12.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_12.TextScaled = true
-TextButton_12.TextSize = 14.000
-TextButton_12.TextWrapped = true
-TextButton_12.MouseButton1Down:connect(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Zenhubtop/zen_hub_pr/main/zennewwwwui.lua", true))()
-end)
-TextButton_13.Parent = Main
-TextButton_13.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_13.BorderSizePixel = 3
-TextButton_13.Position = UDim2.new(0.0208877325, 0, 0.83544302, 0)
-TextButton_13.Size = UDim2.new(0, 68, 0, 30)
-TextButton_13.Font = Enum.Font.PatrickHand
-TextButton_13.Text = "Alchemy Hub"
-TextButton_13.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_13.TextScaled = true
-TextButton_13.TextSize = 14.000
-TextButton_13.TextWrapped = true
-TextButton_13.MouseButton1Down:Connect(function()
-loadstring(game:HttpGet("https://scripts.alchemyhub.xyz"))()
-end)
-TextButton_14.Parent = Main
-TextButton_14.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_14.BorderSizePixel = 3
-TextButton_14.Position = UDim2.new(0.263707578, 0, 0.83544302, 0)
-TextButton_14.Size = UDim2.new(0, 68, 0, 30)
-TextButton_14.Font = Enum.Font.PatrickHand
-TextButton_14.Text = "Speed Hub"
-TextButton_14.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_14.TextScaled = true
-TextButton_14.TextSize = 14.000
-TextButton_14.TextWrapped = true
-TextButton_14.MouseButton1Down:Connect(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-end)
-TextButton_15.Parent = Main
-TextButton_15.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_15.BorderSizePixel = 3
-TextButton_15.Position = UDim2.new(0.498694539, 0, 0.83544302, 0)
-TextButton_15.Size = UDim2.new(0, 68, 0, 30)
-TextButton_15.Font = Enum.Font.PatrickHand
-TextButton_15.Text = "RedZ Hub"
-TextButton_15.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_15.TextScaled = true
-TextButton_15.TextSize = 14.000
-TextButton_15.TextWrapped = true
-TextButton_15.MouseButton1Down:Connect(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()
-end)
-TextButton_16.Parent = Main
-TextButton_16.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-TextButton_16.BorderSizePixel = 3
-TextButton_16.Position = UDim2.new(0.736292481, 0, 0.83544302, 0)
-TextButton_16.Size = UDim2.new(0, 68, 0, 30)
-TextButton_16.Font = Enum.Font.PatrickHand
-TextButton_16.Text = "God Hub"
-TextButton_16.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_16.TextScaled = true
-TextButton_16.TextSize = 14.000
-TextButton_16.TextWrapped = true
-TextButton_16.MouseButton1Down:Connect(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/kiciahook/kiciahook/refs/heads/main/loader.lua"))()
-end)
-TextLabel_2.Parent = Main
-TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.BorderSizePixel = 4
-TextLabel_2.Position = UDim2.new(-0.0652741492, 0, 0.995780587, 0)
-TextLabel_2.Size = UDim2.new(0, 429, 0, 41)
-TextLabel_2.Font = Enum.Font.PatrickHand
-TextLabel_2.Text = "Hub By Juanko Mods VIP (edited by EderX)"
-TextLabel_2.TextColor3 = Color3.fromRGB(225, 0, 3)
-TextLabel_2.TextScaled = true
-TextLabel_2.TextSize = 14.000
-TextLabel_2.TextWrapped = true
 
 addcmd('keepiy', {}, function(args, speaker)
 	if queueteleport then
@@ -8834,7 +8564,7 @@ addcmd('flingallplayers',{'flingall'},function(args, speaker)
     loadstring(game:HttpGet('https://pastebin.com/raw/rvYNTuF8'))()
 end)
 
-addcmd('universalorca',{'orcahub'},function(args, speaker)
+addcmd('openorcahub',{'orcahub'},function(args, speaker)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/richie0866/orca/master/public/latest.lua"))()
 end)
 
@@ -10811,6 +10541,301 @@ end)
 
 addcmd('ghosthub',{},function(args, speaker)
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))()
+end)
+
+addcmd('bloxfruits',{},function(args, speaker)
+	-- Gui to Lua
+-- Version: 1.0
+
+game.StarterGui:SetCore("SendNotification", {
+Title = "ScriptHub-BloxFruits";
+Text = "Hub By Juanko Mods VIP (edited by EderX)"; -- what the text says (ofc)
+Duration = 10;
+})
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local TextButton_2 = Instance.new("TextButton")
+local TextButton_3 = Instance.new("TextButton")
+local TextButton_4 = Instance.new("TextButton")
+local TextButton_5 = Instance.new("TextButton")
+local TextButton_6 = Instance.new("TextButton")
+local TextButton_7 = Instance.new("TextButton")
+local TextButton_8 = Instance.new("TextButton")
+local TextButton_9 = Instance.new("TextButton")
+local TextButton_10 = Instance.new("TextButton")
+local TextButton_11 = Instance.new("TextButton")
+local TextButton_12 = Instance.new("TextButton")
+local TextButton_13 = Instance.new("TextButton")
+local TextButton_14 = Instance.new("TextButton")
+local TextButton_15 = Instance.new("TextButton")
+local TextButton_16 = Instance.new("TextButton")
+local TextLabel_2 = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.fromRGB(11, 11, 11)
+Main.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Main.BorderSizePixel = 5
+Main.Position = UDim2.new(0.21171169, 0, 0.181818172, 0)
+Main.Size = UDim2.new(0, 383, 0, 237)
+Main.Active = true
+Main.Draggable = true
+
+TextLabel.Parent = Main
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BorderSizePixel = 4
+TextLabel.Position = UDim2.new(-0.0652741492, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 429, 0, 41)
+TextLabel.Font = Enum.Font.PatrickHand
+TextLabel.Text = "ScriptHub Blox Fruits"
+TextLabel.TextColor3 = Color3.fromRGB(225, 0, 3)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+TextButton.Parent = Main
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton.BorderSizePixel = 3
+TextButton.Position = UDim2.new(0.0208877288, 0, 0.23206751, 0)
+TextButton.Size = UDim2.new(0, 68, 0, 30)
+TextButton.Font = Enum.Font.PatrickHand
+TextButton.Text = "Webhook"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
+TextButton.MouseButton1Down:connect(function()
+loadstring(game:HttpGet('https://github.com/ssederx33p/panda-hub-not-mine/edit/main/README.md'))()
+end)
+TextButton_2.Parent = Main
+TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_2.BorderSizePixel = 3
+TextButton_2.Position = UDim2.new(0.263707578, 0, 0.23206751, 0)
+TextButton_2.Size = UDim2.new(0, 68, 0, 30)
+TextButton_2.Font = Enum.Font.PatrickHand
+TextButton_2.Text = "W-azure"
+TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.TextScaled = true
+TextButton_2.TextSize = 14.000
+TextButton_2.TextWrapped = true
+TextButton_2.MouseButton1Down:connect(function()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
+end)
+TextButton_3.Parent = Main
+TextButton_3.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_3.BorderSizePixel = 3
+TextButton_3.Position = UDim2.new(0.498694509, 0, 0.23206751, 0)
+TextButton_3.Size = UDim2.new(0, 68, 0, 30)
+TextButton_3.Font = Enum.Font.PatrickHand
+TextButton_3.Text = "Neva Hub"
+TextButton_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_3.TextScaled = true
+TextButton_3.TextSize = 14.000
+TextButton_3.TextWrapped = true
+TextButton_3.MouseButton1Down:connect(function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/VEZ2/NEVAHUB/main/2'))()
+end)
+TextButton_4.Parent = Main
+TextButton_4.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_4.BorderSizePixel = 3
+TextButton_4.Position = UDim2.new(0.736292422, 0, 0.23206751, 0)
+TextButton_4.Size = UDim2.new(0, 68, 0, 30)
+TextButton_4.Font = Enum.Font.PatrickHand
+TextButton_4.Text = "RedZ Hub Pc"
+TextButton_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_4.TextScaled = true
+TextButton_4.TextSize = 14.000
+TextButton_4.TextWrapped = true
+TextButton_4.MouseButton1Down:connect(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()
+end)
+TextButton_5.Parent = Main
+TextButton_5.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_5.BorderSizePixel = 3
+TextButton_5.Position = UDim2.new(0.736292422, 0, 0.434599161, 0)
+TextButton_5.Size = UDim2.new(0, 68, 0, 30)
+TextButton_5.Font = Enum.Font.PatrickHand
+TextButton_5.Text = "Min Hub"
+TextButton_5.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_5.TextScaled = true
+TextButton_5.TextSize = 14.000
+TextButton_5.TextWrapped = true
+TextButton_5.MouseButton1Down:connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()
+end)
+TextButton_6.Parent = Main
+TextButton_6.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_6.BorderSizePixel = 3
+TextButton_6.Position = UDim2.new(0.498694509, 0, 0.434599161, 0)
+TextButton_6.Size = UDim2.new(0, 68, 0, 30)
+TextButton_6.Font = Enum.Font.PatrickHand
+TextButton_6.Text = "Raito Hub"
+TextButton_6.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_6.TextScaled = true
+TextButton_6.TextSize = 14.000
+TextButton_6.TextWrapped = true
+TextButton_6.MouseButton1Down:connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()
+end)
+TextButton_7.Parent = Main
+TextButton_7.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_7.BorderSizePixel = 3
+TextButton_7.Position = UDim2.new(0.263707578, 0, 0.434599161, 0)
+TextButton_7.Size = UDim2.new(0, 68, 0, 30)
+TextButton_7.Font = Enum.Font.PatrickHand
+TextButton_7.Text = "Cokka Hub"
+TextButton_7.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_7.TextScaled = true
+TextButton_7.TextSize = 14.000
+TextButton_7.TextWrapped = true
+TextButton_7.MouseButton1Down:connect(function()loadstring(game:HttpGet"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/CokkaHub.lua")()
+end)
+TextButton_8.Parent = Main
+TextButton_8.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_8.BorderSizePixel = 3
+TextButton_8.Position = UDim2.new(0.0208877325, 0, 0.434599161, 0)
+TextButton_8.Size = UDim2.new(0, 68, 0, 30)
+TextButton_8.Font = Enum.Font.PatrickHand
+TextButton_8.Text = "HoHo Hub"
+TextButton_8.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_8.TextScaled = true
+TextButton_8.TextSize = 14.000
+TextButton_8.TextWrapped = true
+TextButton_8.MouseButton1Down:connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()
+end)
+TextButton_9.Parent = Main
+TextButton_9.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_9.BorderSizePixel = 3
+TextButton_9.Position = UDim2.new(0.736292422, 0, 0.637130797, 0)
+TextButton_9.Size = UDim2.new(0, 68, 0, 30)
+TextButton_9.Font = Enum.Font.PatrickHand
+TextButton_9.Text = "Kncrypt Hub"
+TextButton_9.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_9.TextScaled = true
+TextButton_9.TextSize = 14.000
+TextButton_9.TextWrapped = true
+TextButton_9.MouseButton1Down:connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/Kncrypt/refs/heads/main/sources/BloxFruit.lua"))()
+end)
+TextButton_10.Parent = Main
+TextButton_10.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_10.BorderSizePixel = 3
+TextButton_10.Position = UDim2.new(0.498694509, 0, 0.637130797, 0)
+TextButton_10.Size = UDim2.new(0, 68, 0, 30)
+TextButton_10.Font = Enum.Font.PatrickHand
+TextButton_10.Text = "BlackTrap Hub"
+TextButton_10.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_10.TextScaled = true
+TextButton_10.TextSize = 14.000
+TextButton_10.TextWrapped = true
+TextButton_10.MouseButton1Down:connect(function()
+loadstring(game:HttpGet('https://lua-library.btteam.net/script-auth.txt'))()
+end)
+TextButton_11.Parent = Main
+TextButton_11.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_11.BorderSizePixel = 3
+TextButton_11.Position = UDim2.new(0.263707578, 0, 0.637130797, 0)
+TextButton_11.Size = UDim2.new(0, 68, 0, 30)
+TextButton_11.Font = Enum.Font.PatrickHand
+TextButton_11.Text = "Omg Hub"
+TextButton_11.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_11.TextScaled = true
+TextButton_11.TextSize = 14.000
+TextButton_11.TextWrapped = true
+TextButton_11.MouseButton1Down:connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
+end)
+TextButton_12.Parent = Main
+TextButton_12.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_12.BorderSizePixel = 3
+TextButton_12.Position = UDim2.new(0.0208877325, 0, 0.637130797, 0)
+TextButton_12.Size = UDim2.new(0, 68, 0, 30)
+TextButton_12.Font = Enum.Font.PatrickHand
+TextButton_12.Text = "Zen Hub"
+TextButton_12.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_12.TextScaled = true
+TextButton_12.TextSize = 14.000
+TextButton_12.TextWrapped = true
+TextButton_12.MouseButton1Down:connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Zenhubtop/zen_hub_pr/main/zennewwwwui.lua", true))()
+end)
+TextButton_13.Parent = Main
+TextButton_13.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_13.BorderSizePixel = 3
+TextButton_13.Position = UDim2.new(0.0208877325, 0, 0.83544302, 0)
+TextButton_13.Size = UDim2.new(0, 68, 0, 30)
+TextButton_13.Font = Enum.Font.PatrickHand
+TextButton_13.Text = "Alchemy Hub"
+TextButton_13.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_13.TextScaled = true
+TextButton_13.TextSize = 14.000
+TextButton_13.TextWrapped = true
+TextButton_13.MouseButton1Down:Connect(function()
+loadstring(game:HttpGet("https://scripts.alchemyhub.xyz"))()
+end)
+TextButton_14.Parent = Main
+TextButton_14.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_14.BorderSizePixel = 3
+TextButton_14.Position = UDim2.new(0.263707578, 0, 0.83544302, 0)
+TextButton_14.Size = UDim2.new(0, 68, 0, 30)
+TextButton_14.Font = Enum.Font.PatrickHand
+TextButton_14.Text = "Speed Hub"
+TextButton_14.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_14.TextScaled = true
+TextButton_14.TextSize = 14.000
+TextButton_14.TextWrapped = true
+TextButton_14.MouseButton1Down:Connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+end)
+TextButton_15.Parent = Main
+TextButton_15.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_15.BorderSizePixel = 3
+TextButton_15.Position = UDim2.new(0.498694539, 0, 0.83544302, 0)
+TextButton_15.Size = UDim2.new(0, 68, 0, 30)
+TextButton_15.Font = Enum.Font.PatrickHand
+TextButton_15.Text = "RedZ Hub Mobile"
+TextButton_15.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_15.TextScaled = true
+TextButton_15.TextSize = 14.000
+TextButton_15.TextWrapped = true
+TextButton_15.MouseButton1Down:Connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()
+end)
+TextButton_16.Parent = Main
+TextButton_16.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+TextButton_16.BorderSizePixel = 3
+TextButton_16.Position = UDim2.new(0.736292481, 0, 0.83544302, 0)
+TextButton_16.Size = UDim2.new(0, 68, 0, 30)
+TextButton_16.Font = Enum.Font.PatrickHand
+TextButton_16.Text = "God Hub"
+TextButton_16.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_16.TextScaled = true
+TextButton_16.TextSize = 14.000
+TextButton_16.TextWrapped = true
+TextButton_16.MouseButton1Down:Connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kiciahook/kiciahook/refs/heads/main/loader.lua"))()
+end)
+TextLabel_2.Parent = Main
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BorderSizePixel = 4
+TextLabel_2.Position = UDim2.new(-0.0652741492, 0, 0.995780587, 0)
+TextLabel_2.Size = UDim2.new(0, 429, 0, 41)
+TextLabel_2.Font = Enum.Font.PatrickHand
+TextLabel_2.Text = "Hub By Juanko Mods VIP (edited by EderX)"
+TextLabel_2.TextColor3 = Color3.fromRGB(225, 0, 3)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextWrapped = true
 end)
 
 addcmd('safechat',{},function(args, speaker)
@@ -13125,13 +13150,13 @@ IYMouse.Move:Connect(checkTT)
 
 task.spawn(function()
 	local success, latestVersionInfo = pcall(function() 
-		local versionJson = game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/version')
+		local versionJson = game:HttpGet('https://raw.githubusercontent.com/ssederx33p/inf-yield-remake/refs/heads/main/README.md')
 		return HttpService:JSONDecode(versionJson)
 	end)
 
 	if success then
 		if currentVersion ~= latestVersionInfo.Version then
-			notify('Outdated','Get the new version at infyiff.github.io')
+			notify('Outdated','Get the new version at https://raw.githubusercontent.com/ssederx33p/inf-yield-remake/refs/heads/main/README.md
 		end
 
 		if latestVersionInfo.Announcement and latestVersionInfo.Announcement ~= '' then
@@ -13234,4 +13259,4 @@ task.spawn(function()
 	IntroBackground:Destroy()
 	minimizeHolder()
 	if IsOnMobile then notify("Unstable Device", "On mobile, Infinite Yield may have issues or features that are not functioning correctly.") end
-end)
+end)             
